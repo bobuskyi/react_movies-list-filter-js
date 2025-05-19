@@ -4,10 +4,12 @@ import { MoviesList } from './components/MoviesList';
 import moviesFromServer from './api/movies.json';
 
 export function filterMovies(movies, query) {
+  const queryLowerCase = query.toLocaleLowerCase();
+
   return movies.filter(
     movie =>
-      movie.title.toLowerCase().indexOf(query) !== -1 ||
-      movie.description.toLowerCase().indexOf(query) !== -1,
+      movie.title.toLowerCase().indexOf(queryLowerCase) !== -1 ||
+      movie.description.toLowerCase().indexOf(queryLowerCase) !== -1,
   );
 }
 
@@ -31,9 +33,7 @@ export const App = () => {
                 id="search-query"
                 className="input"
                 placeholder="Type search word"
-                onChange={e =>
-                  setQuery(e.currentTarget.value.trim().toLocaleLowerCase())
-                }
+                onChange={e => setQuery(e.currentTarget.value.trim())}
               />
             </div>
           </div>
